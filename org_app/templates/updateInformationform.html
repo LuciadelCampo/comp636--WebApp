@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}
+Update information
+{% endblock %}
+{% block content %}
+<h1>Update member information!</h1>
+<form action="/updateInformation" method="POST">
+    <input type="hidden" name="memberid" value="{{dbresult[0]}}"/>
+    <label for="attendancestatus">Attendance Status:</label>
+    <select id="attendancestatus" name="attendancestatus" {% if dbresult %} value="{{dbresult[2]}}" {% endif %}>
+        <option value = "Not Prsesent" selected>Not Present</option>
+        <option value = "Present">Present</option>
+        <option value = "Notified Absence">Notified Absence</option>
+    </select><br>
+    <label for="notes"> Notes:</label>
+    <input type="text" id="notes" name="notes" {% if dbresult %} value="{{dbresult[3]}}" {% endif %}/> <br>
+    <label for="leftdate"> Left date:</label>
+    <input type="date" id="leftdate" name="leftdate" {% if dbresult %} value="{{dbresult[1]}}" {% endif %}/> <br>
+    <input type="submit"/>
+    <input type="reset"/>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}
+Attendance form
+{% endblock %}
+{% block content %}
+<h1>Mark your attendance!</h1>
+{% if dbresult %} 
+<form action="/markAttendance" method="POST">
+{% endif %}
+        {% if dbresult %} 
+        <input type="hidden" name="memberid" value="{{dbresult[0]}}"/>
+        {% endif %}
+        <label for="attendancestatus">Attendance Status:</label>
+        <select id="attendancestatus" name="attendancestatus" {% if dbresult %} value="{{dbresult[2]}}" {% endif %}>
+            <option value = "Not Prsesent" selected>Not Present</option>
+            <option value = "Present">Present</option>
+            <option value = "Notified Absence">Notified Absence</option>
+        </select>
+        <input type="submit"/>
+        <input type="reset"/>
+</form>
+{% endblock %}
